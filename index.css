@@ -1,0 +1,85 @@
+:root {
+  --primaryColor: #fd746c;
+  --secondaryColor: #7cd987;
+  --black: #333;
+  --btnColor: rgba(0, 0, 0, 0.8);
+}
+
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100vh;
+  font-family: "Raleway", sans-serif;
+  background: #fd746c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ff9068,
+    #fd746c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ff9068,
+    #fd746c
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header {
+  height: 10rem;
+  padding: 3rem;
+}
+
+header h1 {
+  font-size: 0;
+}
+
+header img {
+  max-width: 18rem;
+}
+
+main {
+  height: calc(100vh - 10rem);
+}
+
+.app {
+  max-width: 75rem;
+  background: white;
+  height: 65rem;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.app h3 {
+  font-size: 2.5rem;
+  padding: 5rem;
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.app h3:hover {
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.app h3:first-of-type {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
