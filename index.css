@@ -20,6 +20,7 @@ body {
   height: 100vh;
   font-family: "Raleway", sans-serif;
   background: #fd746c; /* fallback for old browsers */
+  color: var(--black);
   background: -webkit-linear-gradient(
     to right,
     #ff9068,
@@ -58,6 +59,7 @@ main {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .app h3 {
@@ -82,4 +84,97 @@ main {
 
 .app h3:first-of-type {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.secondScreen {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.secondScreen .goBack {
+  font-size: 4rem;
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+}
+
+.secondScreen a,
+.secondScreen a:active,
+.secondScreen a:hover,
+.secondScreen a:visited {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.secondScreen .goBack:hover {
+  cursor: pointer;
+}
+
+.secondScreen h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.secondScreen .finalPercent {
+  color: var(--secondaryColor);
+  font-size: 7rem;
+  font-weight: 600;
+  margin: 1rem;
+}
+
+.secondScreen label {
+  color: var(--black);
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: block;
+  margin: 1rem;
+}
+
+input[type="number"] {
+  padding: 1.25rem 0.5rem;
+  width: 9rem;
+  font-size: 2.2rem;
+  color: var(--black);
+  text-align: right;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.secondScreen .top-card .input-label-group {
+  margin-top: 4rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group .input-after {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: block;
+  align-self: stretch;
+  padding: 1rem;
+  font-size: 2rem;
+  border-radius: 0 4px 4px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.top-card:after {
+  content: "";
+  display: block;
+  color: black;
+  width: 75%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 4rem auto;
+}
+
+.bottom-card {
+  display: flex;
+  width: 75%;
+  margin: 4rem auto;
+  justify-content: space-evenly;
 }
