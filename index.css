@@ -178,3 +178,37 @@ input[type="number"] {
   margin: 4rem auto;
   justify-content: space-evenly;
 }
+
+.top-card .mark-row {
+  display: grid;
+  grid-template-columns: 2fr 4fr 4fr 2fr;
+  margin-bottom: -2rem;
+}
+
+.mark-row h4 {
+  font-size: 2.2rem;
+  align-self: end;
+  margin-bottom: 2rem;
+}
+
+.addMark {
+  background: #616161;
+  color: white;
+  font-size: 2.2rem;
+  padding: 2.2rem;
+  width: 90%;
+  margin: 0 auto 2rem;
+  border-radius: 0.7rem;
+  border: none;
+}
+
+.addMark:hover,
+.addMark:active {
+  cursor: pointer;
+  background: #444;
+}
+
+.secondScreen.dontKnow {
+  height: 68rem;
+  overflow-y: scroll;
+}
