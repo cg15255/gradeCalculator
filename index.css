@@ -208,7 +208,7 @@ input[type="number"] {
   background: #444;
 }
 
-.secondScreen.dontKnow {
+.secondScreen.dontKnowCurrentGrade {
   height: 68rem;
   overflow-y: scroll;
 }
