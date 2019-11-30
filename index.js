@@ -16,6 +16,7 @@ const knowCurrentGradeHTML = `
               <input
                 type="number"
                 min="0"
+                max="100"
                 step="0.1"
                 name="currentGrade"
                 id="currentGrade"
@@ -34,6 +35,7 @@ const knowCurrentGradeHTML = `
               <input
                 type="number"
                 min="0"
+                max="100"
                 step="0.1"
                 value="100"
                 name="estimatedGrade"
@@ -48,6 +50,7 @@ const knowCurrentGradeHTML = `
               <input
                 type="number"
                 min="0"
+                max="100"
                 step="0.1"
                 value="20"
                 name="finalWeight"
@@ -66,16 +69,17 @@ const dontKnowCurrentGradeHTML = `
           <h2 class="finalPercent">100%</h2>
           <div class="marks">
             <div class="mark-row">
-              <h4>Mark 1</h4>
+              <h4>Mark <span class="markNumber">1</span></h4>
               <div class="what-you-got input-label-group">
-                <label for="currentGrade">What you got</label>
+                <label>What you got</label>
                 <div class="input-group">
                   <input
                     type="number"
                     min="0"
+                    max="100"
                     step="0.1"
-                    name="whatYouGot"
-                    id="whatYouGot-1"
+                    value="100"
+                    class="whatYouGot"
                   />
                   <span class="input-after">%</span>
                 </div>
@@ -83,14 +87,15 @@ const dontKnowCurrentGradeHTML = `
               </div>
               <!-- input-label-group-->
               <div class="what-you-got input-label-group">
-                <label for="currentGrade">What it's Worth</label>
+                <label>What it's Worth</label>
                 <div class="input-group">
                   <input
                     type="number"
                     min="0"
+                    max="100"
                     step="0.1"
-                    name="whatYouGot"
-                    id="whatYouGot-1"
+                    value="100"
+                    class="whatItsWorth"
                   />
                   <span class="input-after">%</span>
                 </div>
@@ -98,7 +103,6 @@ const dontKnowCurrentGradeHTML = `
               </div>
               <!-- input-label-group-->
             </div>
-
           </div>
           <!-- marks-->
         </div>
@@ -112,9 +116,11 @@ const dontKnowCurrentGradeHTML = `
               <input
                 type="number"
                 min="0"
+                max="100"
                 step="0.1"
                 name="estimatedGrade"
                 id="estimatedGrade"
+                value="100"
               />
               <span class="input-after">%</span>
             </div>
@@ -125,9 +131,11 @@ const dontKnowCurrentGradeHTML = `
               <input
                 type="number"
                 min="0"
+                max="100"
                 step="0.1"
                 name="finalWeight"
                 id="finalWeight"
+                value="100"
               />
               <span class="input-after">%</span>
             </div>
@@ -139,31 +147,33 @@ const dontKnowCurrentGradeHTML = `
 const additionalMarkRow = `
   <!-- mark-row-->
   <div class="mark-row">
-    <h4>Mark 1</h4>
+    <h4>Mark <span class="markNumber">1</span></h4>
     <div class="what-you-got input-label-group">
-      <label for="currentGrade">What you got</label>
+      <label>What you got</label>
       <div class="input-group">
         <input
           type="number"
           min="0"
+          max="100"
           step="0.1"
-          name="whatYouGot"
-          id="whatYouGot-1"
-        />
+          value="100"
+          class='whatYouGot'
+          />
         <span class="input-after">%</span>
       </div>
       <!-- input-group-->
     </div>
     <!-- input-label-group-->
     <div class="what-you-got input-label-group">
-      <label for="currentGrade">What it's Worth</label>
+      <label>What it's Worth</label>
       <div class="input-group">
         <input
           type="number"
           min="0"
+          max="100"
           step="0.1"
-          name="whatYouGot"
-          id="whatYouGot-1"
+          class="whatItsWorth"
+          value="100"
         />
         <span class="input-after">%</span>
       </div>
@@ -204,25 +214,58 @@ function loadSecondScreen() {
 function addNewMarkRow() {
   const html = document.querySelector('.marks');
   html.innerHTML = html.innerHTML += additionalMarkRow;
+  updateMarkNumbers();
 }
 
 function calculateCurrentGrade() {
-  console.log('ran');
   let grade;
   if (app.classList.contains('knowCurrentGrade')) {
-    const currentGrade = parseFloat(
+    let currentGrade = parseFloat(
       document.getElementById('currentGrade').value
     );
     if (isNaN(currentGrade)) currentGrade = 0;
-    const guess = parseFloat(document.getElementById('estimatedGrade').value);
+    let guess = parseFloat(document.getElementById('estimatedGrade').value);
     if (isNaN(guess)) guess = 0;
-    const finalWeight =
+    let finalWeight =
       parseFloat(document.getElementById('finalWeight').value) / 100;
     if (isNaN(finalWeight)) finalWeight = 0;
 
     grade = (currentGrade * (1 - finalWeight) + guess * finalWeight).toFixed(1);
-    document.querySelector('.finalPercent').innerHTML = `${grade}%`;
+  } else if (app.classList.contains('dontKnowCurrentGrade')) {
+    const markRows = [...app.querySelectorAll('.mark-row')];
+    const totals = markRows.reduce(
+      (acc, curr) => {
+        let rowGrade = parseFloat(curr.querySelector('.whatYouGot').value);
+        if (isNaN(rowGrade)) rowGrade = 0;
+        let rowWeight =
+          parseFloat(curr.querySelector('.whatItsWorth').value) / 100;
+        if (isNaN(rowWeight)) rowWeight = 0;
+        acc.courseTotal += rowGrade * rowWeight;
+        acc.courseWeight += rowWeight;
+        return acc;
+      },
+      { courseTotal: 0, courseWeight: 0 }
+    );
+
+    let finalWeightDN =
+      parseFloat(document.getElementById('finalWeight').value) / 100;
+    if (isNaN(finalWeightDN)) finalWeightDN = 0;
+    let finalGradeGuess = parseFloat(
+      document.getElementById('estimatedGrade').value
+    );
+    if (isNaN(finalGradeGuess)) finalGradeGuess = 0;
+    const totalFinalMark = totals.courseTotal + finalGradeGuess * finalWeightDN;
+    grade = totalFinalMark;
   }
+  document.querySelector('.finalPercent').innerHTML = `${grade}%`;
+}
+
+function updateMarkNumbers() {
+  const marks = app.querySelectorAll('.mark-row');
+  marks.forEach((mark, i) => {
+    const number = mark.querySelector('.markNumber');
+    number.innerHTML = i + 1;
+  });
 }
 
 // EVENTS
