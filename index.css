@@ -72,15 +72,27 @@ main {
   position: relative;
 }
 
-@media (max-width: 845px) and (max-height: 850px) {
+@media (max-width: 845px) and (max-height: 834px) {
   .app {
     border-radius: 0;
     width: 90%;
     margin-top: 4rem;
-    height: 50%;
+    height: 350px;
   }
   .app.knowCurrentGrade {
-    height: 75%;
+    height: 600px;
+  }
+}
+
+@media (max-width: 845px) and (max-height: 830px) {
+  .app {
+    border-radius: 0;
+    width: 90%;
+    margin-top: 4rem;
+    height: 350px;
+  }
+  .app.knowCurrentGrade {
+    height: 350px;
   }
 }
 
