@@ -20,7 +20,7 @@ const knowCurrentGradeHTML = `
                 step="0.1"
                 name="currentGrade"
                 id="currentGrade"
-                value="100"
+                placeholder="100"
               />
               <span class="input-after">%</span>
             </div>
@@ -37,7 +37,7 @@ const knowCurrentGradeHTML = `
                 min="0"
                 max="100"
                 step="0.1"
-                value="100"
+                placeholder="100"
                 name="estimatedGrade"
                 id="estimatedGrade"
               />
@@ -52,7 +52,7 @@ const knowCurrentGradeHTML = `
                 min="0"
                 max="100"
                 step="0.1"
-                value="20"
+                placeholder="20"
                 name="finalWeight"
                 id="finalWeight"
               />
@@ -78,7 +78,7 @@ const dontKnowCurrentGradeHTML = `
                     min="0"
                     max="100"
                     step="0.1"
-                    value="100"
+                    placeholder="100"
                     class="whatYouGot"
                   />
                   <span class="input-after">%</span>
@@ -94,7 +94,7 @@ const dontKnowCurrentGradeHTML = `
                     min="0"
                     max="100"
                     step="0.1"
-                    value="100"
+                    placeholder="100"
                     class="whatItsWorth"
                   />
                   <span class="input-after">%</span>
@@ -120,7 +120,7 @@ const dontKnowCurrentGradeHTML = `
                 step="0.1"
                 name="estimatedGrade"
                 id="estimatedGrade"
-                value="100"
+                placeholder="100"
               />
               <span class="input-after">%</span>
             </div>
@@ -135,7 +135,7 @@ const dontKnowCurrentGradeHTML = `
                 step="0.1"
                 name="finalWeight"
                 id="finalWeight"
-                value="100"
+                placeholder="100"
               />
               <span class="input-after">%</span>
             </div>
@@ -156,7 +156,7 @@ const additionalMarkRow = `
           min="0"
           max="100"
           step="0.1"
-          value="100"
+          placeholder="100"
           class='whatYouGot'
           />
         <span class="input-after">%</span>
@@ -173,7 +173,7 @@ const additionalMarkRow = `
           max="100"
           step="0.1"
           class="whatItsWorth"
-          value="100"
+          placeholder="100"
         />
         <span class="input-after">%</span>
       </div>
